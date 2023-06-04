@@ -1,0 +1,9 @@
+.analytics-container{
+    display: flex;
+    flex-direction: row;
+    gap: 9rem;
+    padding: 2rem;
+    /* justify-content: center; */
+    margin: 2rem 0 ;
+    width: 100%;
+}
