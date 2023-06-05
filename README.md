@@ -66,4 +66,4 @@ This project is licensed under the [MIT License](LICENSE).
 - Data provided by the SpaceX API: [https://api.spacexdata.com/](https://api.spacexdata.com/)
 - Special thanks to the contributors and maintainers of the libraries used in this project.
 
-- Project Link: [[https://github.com/your-username/SpaceX-Launch-Data](https://meek-bienenstitch-3f58c1.netlify.app/)](https://meek-bienenstitch-3f58c1.netlify.app/)
+- Project Link: [[https://github.com/Himanshu-Dhawale/SpaceX-Launch-Data](https://meek-bienenstitch-3f58c1.netlify.app/)](https://meek-bienenstitch-3f58c1.netlify.app/)
