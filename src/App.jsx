@@ -1,18 +1,20 @@
 import React from 'react';
-
-
-// import LaunchTable from './components/LaunchTable';
-import {Route, Routes, Link} from "react-router-dom";
+import {Route, Routes, Link, useLocation} from "react-router-dom";
 import Analytics from './pages/Analytics';
 import TableComponent from './components/TableComponents';
-
+import "./App.css"
 const App = () => {
+  const location = useLocation();
+
+  const buttonLink = location.pathname === '/analytics' ? '/' : '/analytics';
+  const buttonText = location.pathname === '/analytics' ? 'Table' : 'Analytics';
+
   return (
-    <div>
-      <h1>SpaceX Launches</h1>
-      <button ><Link to={"/analytics"}>
-      Analytics
-        </Link></button>
+    <div className="app-container">
+      <h1 className="app-title">SpaceX Launches</h1>
+      <button className="app-button">
+        <Link to={buttonLink} className="app-link">{buttonText}</Link>
+      </button>
       
       <Routes>
       <Route path='/' element={<TableComponent/>}/>

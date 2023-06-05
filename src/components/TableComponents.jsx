@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchTableData } from '../store/store';
 import { useFilters, usePagination, useTable } from 'react-table';
-
+import "./Table.css";
 const TableComponent = () => {
   const dispatch = useDispatch();
   const { data, loading, error } = useSelector((state) => state.table);
@@ -11,6 +11,7 @@ const TableComponent = () => {
   useEffect(() => {
     dispatch(fetchTableData());
   }, [dispatch]);
+
 
   const columns = useMemo(
     () => [
@@ -30,9 +31,28 @@ const TableComponent = () => {
         Header: 'Launch Site',
         accessor: 'launch_site.site_name_long',
       },
+      {
+        Header: 'Details',
+        accessor: 'details',
+      },
+      {
+        Header: 'Success',
+        accessor: 'launch_success',
+        Cell: ({ value }) => (value ? 'Success' : 'Failure'), // Custom Cell renderer
+      },
+      {
+        Header: 'Article',
+        accessor: 'links.article_link', // Update accessor to point to the correct property
+        Cell: ({ value }) => (
+          <a href={value} target="_blank" rel="noopener noreferrer">
+            Article
+          </a>
+        ), // Render link as a clickable anchor tag
+      },
     ],
     []
   );
+  
 
   const {
     getTableProps,
@@ -73,38 +93,49 @@ const TableComponent = () => {
   }
 
   return (
-    <>
+    <div className="table-container">
       <input
+        className="filter-input"
         type="text"
         placeholder="Search something"
         value={filterInput}
         onChange={handleFilterChange}
       />
-      <table {...getTableProps()}>
+      <table {...getTableProps()} className="table">
         <thead>
-          {headerGroups.map((headerGroup, idx) => (
-            <tr {...headerGroup.getHeaderGroupProps()} key={idx}>
-              {headerGroup.headers.map((column, idx) => (
-                <th {...column.getHeaderProps()} key={idx}>{column.render("Header")}</th>
+          {headerGroups.map((headerGroup) => (
+            <tr {...headerGroup.getHeaderGroupProps()} className="table-row">
+              {headerGroup.headers.map((column) => (
+                <th {...column.getHeaderProps()} className="table-header">
+                  {column.render("Header")}
+                </th>
               ))}
             </tr>
           ))}
         </thead>
-        <tbody {...getTableBodyProps()}>
+        <tbody {...getTableBodyProps()} className="table-body">
           {page.map((row, i) => {
             prepareRow(row);
             return (
-              <tr {...row.getRowProps()}>
-                {row.cells.map((cell,idx) => {
-                  return <td {...cell.getCellProps()} key={}>{cell.render("Cell")}</td>;
+              <tr {...row.getRowProps()} className="table-row">
+                {row.cells.map((cell) => {
+                  return (
+                    <td {...cell.getCellProps()} className="table-cell">
+                      {cell.render("Cell")}
+                    </td>
+                  );
                 })}
               </tr>
             );
           })}
         </tbody>
       </table>
-      <div>
-        <button onClick={() => previousPage()} disabled={!canPreviousPage}>
+      <div className="pagination">
+        <button
+          onClick={() => previousPage()}
+          disabled={!canPreviousPage}
+          className="pagination-button"
+        >
           Previous
         </button>
         {pageOptions.map((pageNumber) => (
@@ -112,17 +143,21 @@ const TableComponent = () => {
             key={pageNumber}
             onClick={() => gotoPage(pageNumber)}
             disabled={pageIndex === pageNumber}
+            className={`pagination-button ${pageIndex === pageNumber ? 'active' : ''}`}
           >
             {pageNumber + 1}
           </button>
         ))}
-        <button onClick={() => nextPage()} disabled={!canNextPage}>
+        <button
+          onClick={() => nextPage()}
+          disabled={!canNextPage}
+          className="pagination-button"
+        >
           Next
         </button>
       </div>
-    </>
+    </div>
   );
 };
 
 export default TableComponent;
-

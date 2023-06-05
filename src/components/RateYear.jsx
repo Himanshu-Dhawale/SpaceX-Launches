@@ -81,7 +81,7 @@ const RateYear = () => {
         label: "Success Rate (%)",
         // data: getSuccessRates(),
         data: data?.map((rocket) => getSuccessRate(rocket)),
-        backgroundColor: "rgba(255, 99, 132, 0.5)"
+        backgroundColor: "rgba(255, 85, 122, 0.5)"
       }
     ]
   };

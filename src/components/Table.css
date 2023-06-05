@@ -1,3 +1,80 @@
-.pagination{
-    cursor: pointer;
+.table-container {
+  margin: 20px;
+}
+
+.filter-input {
+  margin-bottom: 10px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 200px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.table thead tr {
+  background-color: #f2f2f2;
+}
+
+.table th {
+  padding: 12px;
+  font-weight: bold;
+  text-align: left;
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.table td {
+  padding: 12px;
+}
+
+.pagination {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pagination-button {
+  margin-right: 5px;
+  padding: 8px 12px;
+  background-color: #f2f2f2;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.pagination-button.active {
+  background-color: #ccc;
+}
+
+.pagination-button:focus {
+  outline: none;
+}
+
+.pagination-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.loading {
+  margin-top: 20px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.error {
+  margin-top: 20px;
+  text-align: center;
+  color: red;
+  font-weight: bold;
 }

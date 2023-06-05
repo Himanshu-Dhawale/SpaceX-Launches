@@ -80,7 +80,7 @@ const RateChart = () => {
         label: "Success Rate (%)",
         // data: getSuccessRates(),
         data: rockets?.map((rocket) => getSuccessRate(rocket)),
-        backgroundColor: "rgba(54, 162, 235, 0.5)"
+        backgroundColor: "rgba(54, 155, 215, 0.5)"
       }
     ]
   };
